@@ -107,8 +107,41 @@
 		  daysDiff = FirstMonthDiff;
   
 	  }
+	  
+		var yearText;
+		if (yearDiff == 0) {
+			yearText = " "
+		}
+		else if (yearDiff == 1) {
+			yearText = "one year "
+		}
+		else if (yearDiff > 1) {
+			yearText =  yearDiff + " years "
+		}
+		
+		var monthText;
+		if (monthDiff == 0) {
+			monthText = " "
+		}
+		if (monthDiff == 1) {
+			monthText = "one month "
+		}
+		else if (monthDiff > 1) {
+			monthText =  monthDiff + " months "
+		}
+		
+		var dayText;
+		if (dayDiff == 0) {
+			dayText = " "
+		}
+		if (dayDiff == 1) {
+			dayText = "one day "
+		}
+		else if (dayDiff > 1) {
+			dayText =  dayDiff + " days "
+		}
   
-	  var result = yearDiff + "Amy is Year(s)" + " " + monthDiff + " month(s) and " + daysDiff + " days(s) old";
+	  var result `Amy is ${yearText} ${monthText} ${dayText} old`
 	  
 	  document.getElementById("amy").innerHTML = result;
   }

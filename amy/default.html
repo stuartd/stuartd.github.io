@@ -18,10 +18,8 @@
   <script>
   
   // https://stackoverflow.com/a/26417914/43846
-  function calculate(end, begin) {
+  function calculate(e, b) {
   
-	  var e = new Date(end);
-	  var b = new Date(begin);
 	  var bMonth = b.getMonth();
 	  var bYear = b.getFullYear();
 	  var eYear = e.getFullYear();
@@ -115,7 +113,8 @@
 	  document.getElementById("amy").innerHTML = result;
   }
   
-  window.onload = calculate(new Date(), new Date(2020, 5, 8));
+  // month index so May is 5 - wtf JavaScript..
+  window.onload = calculate(new Date(), new Date(2020, 4, 8));
   </script>
 </body>
 </html>

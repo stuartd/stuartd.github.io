@@ -8,146 +8,26 @@
   <meta name="description" content="cute and fluffy">
   <meta name="author" content="stuartd">
 
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <link rel="stylesheet" href="styles.css?v=1.0">
+  
+  <script src="age.js"></script>
 
 </head>
 
 <body>
-  <div id="amy"></div>
+  <h1>How old is Amy?</h1>
+  <h2 id="amy"></h2>  
+  <img id="amypic" />
+ </body>
+
+<script>
+  var birthDate = new Date(2020, 4, 8);
+  var imageNum = Math.floor(Math.random() * (14));
+  document.getElementById("amypic").src = "images/amy" + imageNum + ".jpeg";
+
+  window.onload = 
+    (document.getElementById("amy").innerHTML = 
+      calculate(new Date(), birthDate, "Amy"));
+</script>
   
-  <script>
-  
-  // https://stackoverflow.com/a/26417914/43846
-  function calculate(e, b) {
-  
-	  var bMonth = b.getMonth();
-	  var bYear = b.getFullYear();
-	  var eYear = e.getFullYear();
-	  var eMonth = e.getMonth();
-	  var bDay = b.getDate();
-	  var eDay = e.getDate() + 1;
-  
-	  if ((eMonth == 0) || (eMonth == 2) || (eMonth == 4) || (eMonth == 6) || (eMonth == 7) || (eMonth == 9) || (eMonth == 11))
-  
-	  {
-		  var eDays = 31;
-	  }
-  
-	  if ((eMonth == 3) || (eMonth == 5) || (eMonth == 8) || (eMonth == 10))
-  
-	  {
-		  var eDays = 30;
-	  }
-  
-	  if (eMonth == 1 && ((eYear % 4 == 0) && (eYear % 100 != 0)) || (eYear % 400 == 0)) {
-		  var eDays = 29;
-	  }
-  
-	  if (eMonth == 1 && ((eYear % 4 != 0) || (eYear % 100 == 0))) {
-		  var eDays = 28;
-	  }
-  
-  
-	  if ((bMonth == 0) || (bMonth == 2) || (bMonth == 4) || (bMonth == 6) || (bMonth == 7) || (bMonth == 9) || (bMonth == 11))
-  
-	  {
-		  var bDays = 31;
-	  }
-  
-	  if ((bMonth == 3) || (bMonth == 5) || (bMonth == 8) || (bMonth == 10))
-  
-	  {
-		  var bDays = 30;
-	  }
-  
-	  if (bMonth == 1 && ((bYear % 4 == 0) && (bYear % 100 != 0)) || (bYear % 400 == 0)) {
-		  var bDays = 29;
-	  }
-  
-	  if (bMonth == 1 && ((bYear % 4 != 0) || (bYear % 100 == 0))) {
-		  var bDays = 28;
-	  }
-  
-  
-	  var FirstMonthDiff = bDays - bDay + 1;
-  
-  
-	  if (eDay - bDay < 0) {
-  
-		  eMonth = eMonth - 1;
-		  eDay = eDay + eDays;
-  
-	  }
-  
-	  var daysDiff = eDay - bDay;
-  
-	  if (eMonth - bMonth < 0) {
-		  eYear = eYear - 1;
-		  eMonth = eMonth + 12;
-	  }
-  
-	  var monthDiff = eMonth - bMonth;
-  
-	  var yearDiff = eYear - bYear;
-  
-	  if (daysDiff == eDays) {
-		  daysDiff = 0;
-		  monthDiff = monthDiff + 1;
-  
-		  if (monthDiff == 12) {
-			  monthDiff = 0;
-			  yearDiff = yearDiff + 1;
-		  }
-  
-	  }
-  
-	  if ((FirstMonthDiff != bDays) && (eDay - 1 == eDays))
-  
-	  {
-		  daysDiff = FirstMonthDiff;
-  
-	  }
-	  
-		var yearText;
-		if (yearDiff == 0) {
-			yearText = " "
-		}
-		else if (yearDiff == 1) {
-			yearText = "one year "
-		}
-		else if (yearDiff > 1) {
-			yearText =  yearDiff + " years "
-		}
-		
-		var monthText;
-		if (monthDiff == 0) {
-			monthText = " "
-		}
-		if (monthDiff == 1) {
-			monthText = "one month "
-		}
-		else if (monthDiff > 1) {
-			monthText =  monthDiff + " months "
-		}
-		
-		var dayText;
-		if (daysDiff == 0) {
-			dayText = " "
-		}
-		if (daysDiff == 1) {
-			dayText = "one day "
-		}
-		else if (daysDiff > 1) {
-			dayText =  daysDiff + " days "
-		}
-  
-	  var result = `Amy is ${yearText} ${monthText} ${dayText} old`
-	  
-	  document.getElementById("amy").innerHTML = result;
-  }
-  
-  // month index so May is 5 - wtf JavaScript..
-  window.onload = calculate(new Date(), new Date(2020, 4, 8));
-  </script>
-</body>
 </html>

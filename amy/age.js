@@ -9,8 +9,8 @@ function calculate(today, birthDate, name) {
 	var eMonth = today.getMonth();
 	var eDay = today.getDate() + 1;
 
-	var weeks = (today - birthDate) / 604800000;
-
+	var weeks = ((today - birthDate) / 604800000).toFixed(0);
+	
 	if ((eMonth == 0) || (eMonth == 2) || (eMonth == 4) || (eMonth == 6)
 		|| (eMonth == 7) || (eMonth == 9) || (eMonth == 11)) {
 		var eDays = 31;
@@ -109,7 +109,7 @@ function calculate(today, birthDate, name) {
 	}
 
 	let resultText = getResultText(daysDiff, monthDiff, yearDiff, dayText, monthText, yearText);
-	let weeksText = weeks < 52 ? weeks.toFixed(0) + " weeks" : null;
+	let weeksText = weeks < 52 ? weeks + " weeks" : null;
 
 	var result = `${name} is ${resultText} old (${weeksText})`
 

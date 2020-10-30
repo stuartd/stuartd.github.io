@@ -1,13 +1,15 @@
 // https://stackoverflow.com/a/26417914/43846
 function calculate(today, birthDate, name) {
 
-	var bMonth = birthDate.getMonth();
+	var bMonth = birthDate.getMonth() + 1;
 	var bYear = birthDate.getFullYear();
-	var bDay = birthDate.getDate();
+	var bDay = birthDate.getDate() + 1;
 
 	var eYear = today.getFullYear();
-	var eMonth = today.getMonth();
+	var eMonth = today.getMonth() + 1;
 	var eDay = today.getDate() + 1;
+
+	debugger;
 
 	var weeks = ((today - birthDate) / 604800000).toFixed(0);
 	
@@ -127,6 +129,10 @@ function getResultText(daysDiff, monthsDiff, yearsDiff, dayText, monthText, year
 
 	if (monthsDiff === 0) {
 		return `${yearText} and ${dayText}`
+	}
+
+	if (yearsDiff === 0 && daysDiff === 0) {
+		return `${monthText}`
 	}
 
 	if (yearsDiff === 0) {

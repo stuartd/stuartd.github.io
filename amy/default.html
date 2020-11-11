@@ -24,13 +24,14 @@
 <script>
   var urlParams = new URLSearchParams(window.location.search);
   var test = urlParams.get('test');
-  console.log(test);
   var birthDate = new Date(2020, 4, 8);
   var imageNum = Math.floor(Math.random() * (30));
   document.getElementById("amypic").src = "images/amy" + imageNum + ".jpeg";
 
   var date = test == null ? new Date() : new Date(test);
   console.log(date);
+  console.log(new Date(test));
+  console.log(new Date(test) == date);
   window.onload = 
     (document.getElementById("amy").innerHTML = 
       calculate(date, birthDate, "Amy"));

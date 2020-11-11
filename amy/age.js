@@ -9,8 +9,6 @@ function calculate(today, birthDate, name) {
 	var eMonth = today.getMonth() + 1;
 	var eDay = today.getDate() + 1;
 
-	debugger;
-
 	var weeks = ((today - birthDate) / 604800000).toFixed(0);
 	
 	if ((eMonth == 0) || (eMonth == 2) || (eMonth == 4) || (eMonth == 6)

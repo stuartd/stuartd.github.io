@@ -11,36 +11,36 @@ function calculate(today, birthDate, name) {
 
 	var weeks = ((today - birthDate) / 604800000).toFixed(0);
 	
-	if ((eMonth == 0) || (eMonth == 2) || (eMonth == 4) || (eMonth == 6)
-		|| (eMonth == 7) || (eMonth == 9) || (eMonth == 11)) {
+	if ((eMonth == 1) || (eMonth == 3) || (eMonth == 5) || (eMonth == 7)
+		|| (eMonth == 8) || (eMonth == 10) || (eMonth == 12)) {
 		var eDays = 31;
 	}
 
-	if ((eMonth == 3) || (eMonth == 5) || (eMonth == 8) || (eMonth == 10)) {
+	if ((eMonth == 4) || (eMonth == 6) || (eMonth == 9) || (eMonth == 11)) {
 		var eDays = 30;
 	}
 
-	if (eMonth == 1 && ((eYear % 4 == 0) && (eYear % 100 != 0)) || (eYear % 400 == 0)) {
+	if (eMonth == 2 && ((eYear % 4 == 0) && (eYear % 100 != 0)) || (eYear % 400 == 0)) {
 		var eDays = 29;
 	}
 
-	if (eMonth == 1 && ((eYear % 4 != 0) || (eYear % 100 == 0))) {
+	if (eMonth == 2 && ((eYear % 4 != 0) || (eYear % 100 == 0))) {
 		var eDays = 28;
 	}
 
-	if ((bMonth == 0) || (bMonth == 2) || (bMonth == 4) || (bMonth == 6) || (bMonth == 7) || (bMonth == 9) || (bMonth == 11)) {
+	if ((bMonth == 1) || (bMonth == 3) || (bMonth == 5) || (bMonth == 7) || (bMonth == 8) || (bMonth == 10) || (bMonth == 12)) {
 		var bDays = 31;
 	}
 
-	if ((bMonth == 3) || (bMonth == 5) || (bMonth == 8) || (bMonth == 10)) {
+	if ((bMonth == 4) || (bMonth == 6) || (bMonth == 9) || (bMonth == 11)) {
 		var bDays = 30;
 	}
 
-	if (bMonth == 1 && ((bYear % 4 == 0) && (bYear % 100 != 0)) || (bYear % 400 == 0)) {
+	if (bMonth == 2 && ((bYear % 4 == 0) && (bYear % 100 != 0)) || (bYear % 400 == 0)) {
 		var bDays = 29;
 	}
 
-	if (bMonth == 1 && ((bYear % 4 != 0) || (bYear % 100 == 0))) {
+	if (bMonth == 2 && ((bYear % 4 != 0) || (bYear % 100 == 0))) {
 		var bDays = 28;
 	}
 

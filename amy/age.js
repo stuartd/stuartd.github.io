@@ -1,70 +1,76 @@
 // https://stackoverflow.com/a/26417914/43846
 function calculate(today, birthDate, name) {
 
-	var bMonth = birthDate.getMonth() + 1;
-	var bYear = birthDate.getFullYear();
-	var bDay = birthDate.getDate() + 1;
+	// Make things easier by getting the actual month
+	var birthMonth = birthDate.getMonth() + 1;
+	var birthYear = birthDate.getFullYear();
+	var birthDay = birthDate.getDate();
 
-	var eYear = today.getFullYear();
-	var eMonth = today.getMonth() + 1;
-	var eDay = today.getDate() + 1;
+	var currentYear = today.getFullYear();
+	var currentMonth = today.getMonth() + 1;
+	var currentDay = today.getDate();
 
-	var weeks = ((today - birthDate) / 604800000).toFixed(0);
+	var rawWeeks = ((today - birthDate) / 604800000);
+	var weeks = rawWeeks.toFixed(0);
 	
-	if ((eMonth == 1) || (eMonth == 3) || (eMonth == 5) || (eMonth == 7)
-		|| (eMonth == 8) || (eMonth == 10) || (eMonth == 12)) {
-		var eDays = 31;
+	// TODO - 1) actually write down the algorithm for this
+	// Decide whether to use the raw value for month, or the 'correct' value
+	// 2) Create a daysInMonth(month) function
+	// 3) Calculate weeks and days ("30 weeks and 6 days")
+	// 4) Fix the names. Ugh.
+
+	if ((currentMonth == 1) || (currentMonth == 3) || (currentMonth == 5) || (currentMonth == 7)
+		|| (currentMonth == 8) || (currentMonth == 10) || (currentMonth == 12)) {
+		var daysInCurrentMonth = 31;
 	}
 
-	if ((eMonth == 4) || (eMonth == 6) || (eMonth == 9) || (eMonth == 11)) {
-		var eDays = 30;
+	if ((currentMonth == 4) || (currentMonth == 6) || (currentMonth == 9) || (currentMonth == 11)) {
+		var daysInCurrentMonth = 30;
 	}
 
-	if (eMonth == 2 && ((eYear % 4 == 0) && (eYear % 100 != 0)) || (eYear % 400 == 0)) {
-		var eDays = 29;
+	if (currentMonth == 2 && ((currentYear % 4 == 0) && (currentYear % 100 != 0)) || (currentYear % 400 == 0)) {
+		var daysInCurrentMonth = 29;
 	}
 
-	if (eMonth == 2 && ((eYear % 4 != 0) || (eYear % 100 == 0))) {
-		var eDays = 28;
+	if (currentMonth == 2 && ((currentYear % 4 != 0) || (currentYear % 100 == 0))) {
+		var daysInCurrentMonth = 28;
 	}
 
-	if ((bMonth == 1) || (bMonth == 3) || (bMonth == 5) || (bMonth == 7) || (bMonth == 8) || (bMonth == 10) || (bMonth == 12)) {
-		var bDays = 31;
+	if ((birthMonth == 1) || (birthMonth == 3) || (birthMonth == 5) || (birthMonth == 7) || (birthMonth == 8) || (birthMonth == 10) || (birthMonth == 12)) {
+		var daysInBirthMonth = 31;
 	}
 
-	if ((bMonth == 4) || (bMonth == 6) || (bMonth == 9) || (bMonth == 11)) {
-		var bDays = 30;
+	if ((birthMonth == 4) || (birthMonth == 6) || (birthMonth == 9) || (birthMonth == 11)) {
+		var daysInBirthMonth = 30;
 	}
 
-	if (bMonth == 2 && ((bYear % 4 == 0) && (bYear % 100 != 0)) || (bYear % 400 == 0)) {
-		var bDays = 29;
+	if (birthMonth == 2 && ((birthYear % 4 == 0) && (birthYear % 100 != 0)) || (birthYear % 400 == 0)) {
+		var daysInBirthMonth = 29;
 	}
 
-	if (bMonth == 2 && ((bYear % 4 != 0) || (bYear % 100 == 0))) {
-		var bDays = 28;
+	if (birthMonth == 2 && ((birthYear % 4 != 0) || (birthYear % 100 == 0))) {
+		var daysInBirthMonth = 28;
 	}
 
-	var FirstMonthDiff = bDays - bDay + 1;
+	var FirstMonthDiff = daysInBirthMonth - birthDay + 1;
 
-	if (eDay - bDay < 0) {
-
-		eMonth = eMonth - 1;
-		eDay = eDay + eDays;
-
+	if (currentDay - birthDay < 0) {
+		currentMonth = currentMonth - 1;
+		currentDay = currentDay + daysInCurrentMonth;
 	}
 
-	var daysDiff = eDay - bDay;
+	var daysDiff = currentDay - birthDay;
 
-	if (eMonth - bMonth < 0) {
-		eYear = eYear - 1;
-		eMonth = eMonth + 12;
+	if (currentMonth - birthMonth < 0) {
+		currentYear = currentYear - 1;
+		currentMonth = currentMonth + 12;
 	}
 
-	var monthDiff = eMonth - bMonth;
+	var monthDiff = currentMonth - birthMonth;
 
-	var yearDiff = eYear - bYear;
+	var yearDiff = currentYear - birthYear;
 
-	if (daysDiff == eDays) {
+	if (daysDiff == daysInCurrentMonth) {
 		daysDiff = 0;
 		monthDiff = monthDiff + 1;
 
@@ -75,7 +81,7 @@ function calculate(today, birthDate, name) {
 
 	}
 
-	if ((FirstMonthDiff != bDays) && (eDay - 1 == eDays)) {
+	if ((FirstMonthDiff != daysInBirthMonth) && (currentDay - 1 == daysInCurrentMonth)) {
 		daysDiff = FirstMonthDiff;
 	}
 

@@ -1,56 +1,24 @@
-// https://stackoverflow.com/a/26417914/43846
-function calculate(today, birthDate, name) {
+	function calculate(today, birthDate, name) {
 
-	// Make things easier by getting the actual month
-	var birthMonth = birthDate.getMonth() + 1;
-	var birthYear = birthDate.getFullYear();
-	var birthDay = birthDate.getDate();
+	const birthMonth = actualMonth(birthDate);
+	const daysInBirthMonth = daysInMonth(birthDate);
+	const daysInCurrentMonth = daysInMonth(today);
 
-	var currentYear = today.getFullYear();
-	var currentMonth = today.getMonth() + 1;
-	var currentDay = today.getDate();
+	const birthYear = birthDate.getFullYear();
+	const birthDay = birthDate.getDate();
 
-	var rawWeeks = ((today - birthDate) / 604800000);
-	var weeks = rawWeeks.toFixed(0);
-	
+	let currentYear = today.getFullYear();
+	let currentMonth = actualMonth(today);
+	let currentDay = today.getDate();
+
+	const rawWeeks = ((today - birthDate) / 604800000);
+	const weeks = rawWeeks.toFixed(0);
+		
 	// TODO - 1) actually write down the algorithm for this
 	// Decide whether to use the raw value for month, or the 'correct' value
 	// 2) Create a daysInMonth(month) function
 	// 3) Calculate weeks and days ("30 weeks and 6 days")
 	// 4) Fix the names. Ugh.
-
-	if ((currentMonth == 1) || (currentMonth == 3) || (currentMonth == 5) || (currentMonth == 7)
-		|| (currentMonth == 8) || (currentMonth == 10) || (currentMonth == 12)) {
-		var daysInCurrentMonth = 31;
-	}
-
-	if ((currentMonth == 4) || (currentMonth == 6) || (currentMonth == 9) || (currentMonth == 11)) {
-		var daysInCurrentMonth = 30;
-	}
-
-	if (currentMonth == 2 && ((currentYear % 4 == 0) && (currentYear % 100 != 0)) || (currentYear % 400 == 0)) {
-		var daysInCurrentMonth = 29;
-	}
-
-	if (currentMonth == 2 && ((currentYear % 4 != 0) || (currentYear % 100 == 0))) {
-		var daysInCurrentMonth = 28;
-	}
-
-	if ((birthMonth == 1) || (birthMonth == 3) || (birthMonth == 5) || (birthMonth == 7) || (birthMonth == 8) || (birthMonth == 10) || (birthMonth == 12)) {
-		var daysInBirthMonth = 31;
-	}
-
-	if ((birthMonth == 4) || (birthMonth == 6) || (birthMonth == 9) || (birthMonth == 11)) {
-		var daysInBirthMonth = 30;
-	}
-
-	if (birthMonth == 2 && ((birthYear % 4 == 0) && (birthYear % 100 != 0)) || (birthYear % 400 == 0)) {
-		var daysInBirthMonth = 29;
-	}
-
-	if (birthMonth == 2 && ((birthYear % 4 != 0) || (birthYear % 100 == 0))) {
-		var daysInBirthMonth = 28;
-	}
 
 	var FirstMonthDiff = daysInBirthMonth - birthDay + 1;
 
@@ -115,11 +83,23 @@ function calculate(today, birthDate, name) {
 	}
 
 	let resultText = getResultText(daysDiff, monthDiff, yearDiff, dayText, monthText, yearText);
-	let weeksText = weeks < 52 ? weeks + " weeks" : null;
+	let weeksText = weeks < 52 ? `(${weeks} weeks)` : '';	
+	
+	var result = `${name} is ${resultText} old ${weeksText}`
 
-	var result = `${name} is ${resultText} old (${weeksText})`
+	return result.trim();
+}
 
-	return result;
+function getWeekText() {
+   if (weeks < 52) {
+	   return null;
+   }
+
+   if (days == 0) {
+		return `(${weeks})`;
+   }
+
+   return  `(${weeks} weeks and ${days})`;
 }
 
 function getResultText(daysDiff, monthsDiff, yearsDiff, dayText, monthText, yearText) {
@@ -147,6 +127,49 @@ function getResultText(daysDiff, monthsDiff, yearsDiff, dayText, monthText, year
 		return `${yearText} and ${monthText}`
 	}
 
-	return `${yearText}, ${monthText} and ${monthText}`
+	return `${yearText}, ${monthText} and ${daysText}`
+}
 
+function actualMonth(date) {
+	// Make things easier by getting the actual month number
+	return date.getMonth() + 1;
+}
+
+function daysInMonth(rawDate) {
+
+	month = rawDate.getMonth() + 1;
+	year = rawDate.getFullYear();
+
+	// "30 days hath september, april, june and november .."
+	if ((month == 4) 
+		|| (month == 6) 
+		|| (month == 9) 
+		|| (month == 11)) {
+		return 30;
+	}
+
+	// "all the rest have 31.."
+	if ((month == 1) 
+		|| (month == 3) 
+		|| (month == 5) 
+		|| (month == 7)
+		|| (month == 8) 
+		|| (month == 10) 
+		|| (month == 12)) {
+		return 31;
+	}
+
+	// "excepting february alone"
+	if (month != 2) {
+		throw(`logic error in daysInMonth - month should be 2 but it is ${month}`);
+	}
+
+	// If anyone's running this code in the year 2100,
+	// then the dogs are long dead. And Javascript in 2400? Really?
+	// SO not bothering with year % 100 or year % 400
+	if (year % 4 == 0) {
+		return 29;
+	}
+
+	return 28;
 }

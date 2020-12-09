@@ -127,6 +127,10 @@ function getResultText(daysDiff, monthsDiff, yearsDiff, dayText, monthText, year
 		return `${yearText} and ${monthText}`
 	}
 
+	if (daysText === undefined) {
+		return `${yearText} and ${monthText}`
+	}
+		
 	return `${yearText}, ${monthText} and ${daysText}`
 }
 

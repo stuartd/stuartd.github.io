@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
 
-  <title>How old is Amy?</title>
-  <meta name="description" content="cute and fluffy">
+  <title>How old is dave?</title>
+  <meta name="description" content="obsessed with balls">
   <meta name="author" content="stuartd">
 
   <link rel="stylesheet" href="../shared/styles.css">
@@ -15,27 +15,27 @@
 </head>
 
 <body>
-  <h1>How old is Amy?</h1>
+  <h1>How old is Dave?</h1>
   <h3>Refresh the page to change the image</h3>
-  <h2 id="amy"></h2>  
-  <img id="amypic" />
+  <h2 id="dave"></h2>  
+  <img id="davepic" />
  </body>
 
 <script>
   var urlParams = new URLSearchParams(window.location.search);
   var test = urlParams.get('test');
-  // 8th May, so pass 4 as the month (thanks Brendan)
-  var birthDate = new Date(2020, 4, 8);
-  var imageNum = Math.floor(Math.random() * (30));
-  document.getElementById("amypic").src = "images/amy" + imageNum + ".jpeg";
+  // 14th September, so pass 8 as the month (thanks Brendan)
+  var birthDate = new Date(2015, 8, 14);
+  var imageNum = Math.floor(Math.random() * (83));
+  document.getElementById("davepic").src = "images/dave" + imageNum + ".jpeg";
 
   var date = test == null ? new Date() : new Date(test);
   console.log(date);
   console.log(new Date(test));
   console.log(new Date(test) == date);
   window.onload = 
-    (document.getElementById("amy").innerHTML = 
-      calculate(date, birthDate, "Amy"));
+    (document.getElementById("dave").innerHTML = 
+      calculate(date, birthDate, "dave"));
 </script>
   
 </html>

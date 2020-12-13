@@ -57,9 +57,9 @@
 	if (yearDiff == 0) {
 		yearText = " "
 	} else if (yearDiff == 1) {
-		yearText = "one year "
+		yearText = "one year"
 	} else if (yearDiff > 1) {
-		yearText = yearDiff + " years "
+		yearText = yearDiff + " years"
 	}
 
 	var monthText;
@@ -67,9 +67,9 @@
 		monthText = " "
 	}
 	else if (monthDiff == 1) {
-		monthText = "one month "
+		monthText = "one month"
 	} else if (monthDiff > 1) {
-		monthText = monthDiff + " months "
+		monthText = monthDiff + " months"
 	}
 
 	var dayText;
@@ -79,7 +79,7 @@
 	if (daysDiff == 1) {
 		dayText = "one day "
 	} else if (daysDiff > 1) {
-		dayText = daysDiff + " days "
+		dayText = daysDiff + " days"
 	}
 
 	let resultText = getResultText(daysDiff, monthDiff, yearDiff, dayText, monthText, yearText);
@@ -126,12 +126,8 @@ function getResultText(daysDiff, monthsDiff, yearsDiff, dayText, monthText, year
 	if (daysDiff === 0) {
 		return `${yearText} and ${monthText}`
 	}
-
-	if (daysText === undefined) {
-		return `${yearText} and ${monthText}`
-	}
 		
-	return `${yearText}, ${monthText} and ${daysText}`
+	return `${yearText}, ${monthText} and ${dayText}`
 }
 
 function actualMonth(date) {

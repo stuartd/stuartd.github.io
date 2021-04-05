@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="../shared/styles.css">
   
   <script src="../shared/age.js"></script>
+  <script src="../shared/pics.js"></script>
 
 </head>
 
@@ -25,10 +26,16 @@
 <script>
   var urlParams = new URLSearchParams(window.location.search);
   var test = urlParams.get('test');
-  // 14th September, so pass 8 as the month (thanks Brendan)
+  // 14th September, so pass 8 as the month (thanks Java)
   var birthDate = new Date(2015, 8, 14);
-  var imageNum = Math.floor(Math.random() * (83));
-  document.getElementById("davepic").src = "images/dave" + imageNum + ".jpeg";
+
+  let imageCount = 83;
+  let imageTag = "dave"; 
+  
+  var imageIndex = getImageIndex(imageCount, imageTag);
+  var image = "images/dave" + imageIndex + ".jpeg";
+  document.getElementById("davepic").src = image;
+  console.log(image);
 
   var date = test == null ? new Date() : new Date(test);
   console.log(date);

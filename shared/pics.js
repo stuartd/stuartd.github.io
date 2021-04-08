@@ -26,7 +26,7 @@ function shuffleAndStore(imageCount, tag) {
 
 function getImageIndex(imageCount, tag) {
 
-	// OK, nwe plan, as the items have to be stored as strings.
+	// OK, new plan, as the items have to be stored as strings.
 	// If this is the first run or we've run out of items, create a shuffled array and store it as Json.
 
 	let pictureIndexes = null;

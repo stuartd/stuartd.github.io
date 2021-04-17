@@ -11,20 +11,6 @@
   <link rel="stylesheet" href="shared/styles.css">
   <script src="/shared/pics.js"></script>
 
-  <script>
-
-    let imageCount = 20;
-    let imageTag = "dave_and_amy";
-
-function SetPic() {
-    var imageIndex = getImageIndex(imageCount, imageTag);
-    var image = "images/amy_and_dave" + imageIndex + ".jpeg";
-    document.getElementById("bothpic").src = image;
-    console.log(image);
-  }
-
-  </script>
-
 </head>
 
 <body>
@@ -33,3 +19,20 @@ function SetPic() {
     <h1><a href="/dave/">How old is Dave?</a></h1>
     <h1><a href="/amy/">How old is Amy?</a></h1>
 </body>
+
+<script>
+
+  let imageCount = 20;
+  let imageTag = "dave_and_amy";
+
+  SetPic();
+
+  function SetPic() {
+    var imageIndex = getImageIndex(imageCount, imageTag);
+    var image = "images/amy_and_dave" + imageIndex + ".jpeg";
+    document.getElementById("bothpic").src = image;
+    console.log(image);
+  }
+
+</script>
+</html>

@@ -9,11 +9,30 @@
   <meta name="author" content="stuartd">
 
   <link rel="stylesheet" href="shared/styles.css">
+  <script src="/shared/pics.js"></script>
 
 </head>
 
 <body>
-    <img src="images/amy_and_dave.jpeg" />
-    <h1><a href="/dave/">How old is Dave Dog?</a></h1>
-    <h1><a href="/amy/">How old is Amy Pup?</a></h1>
- </body>
+    <h3>Refresh the page or <a href="javascript:SetPic()">click here</a> to change the image</h3>
+    <img id="bothpic" />  
+    <h1><a href="/dave/">How old is Dave?</a></h1>
+    <h1><a href="/amy/">How old is Amy?</a></h1>
+</body>
+
+<script>
+
+  let imageCount = 20;
+  let imageTag = "dave_and_amy";
+
+  SetPic();
+
+  function SetPic() {
+    var imageIndex = getImageIndex(imageCount, imageTag);
+    var image = "images/amy_and_dave" + imageIndex + ".jpeg";
+    document.getElementById("bothpic").src = image;
+    console.log(image);
+  }
+
+</script>
+</html>

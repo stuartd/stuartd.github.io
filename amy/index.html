@@ -17,7 +17,7 @@
 
 <body>
   <h1>How old is Amy?</h1>
-  <h3>Refresh the page to change the image</h3>
+  <h3>Refresh the page or <a href="javascript:SetPic()">click here</a> to change the image</h3>
   <h2 id="amy"></h2>  
   <h4><a href="/dave/">How old is Dave?</a></h4>
   <img id="amypic" />
@@ -29,13 +29,10 @@
   // 8th May, so pass 4 as the month (thanks Java)
   var birthDate = new Date(2020, 4, 8);
 
-  let imageCount = 31;
+  let imageCount = 88;
   let imageTag = "amy"; 
   
-  var imageIndex = getImageIndex(imageCount, imageTag);
-  var image = "images/amy" + imageIndex + ".jpeg";
-  document.getElementById("amypic").src = image;
-  console.log(image);
+  SetPic();
 
   var date = test == null ? new Date() : new Date(test);
   // console.log(date);
@@ -44,6 +41,13 @@
   window.onload = 
     (document.getElementById("amy").innerHTML = 
       calculate(date, birthDate, "Amy"));
+
+  function SetPic() {
+    var imageIndex = getImageIndex(imageCount, imageTag);
+    var image = "images/amy" + imageIndex + ".jpeg";
+    document.getElementById("amypic").src = image;
+    console.log(image);
+  }
 </script>
   
 </html>
